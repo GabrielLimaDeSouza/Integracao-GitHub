@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil GitHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="github-original.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 menu">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <form class="form-inline my-2 my-lg-0 form">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Usuário GitHub"
+                            autocomplete="off" aria-label="Search" id="pesquisaUsuario" value="GabrielLimadeSouza">
+                        <button class=" btn btn-outline-success my-2 my-sm-0 btnpesquisa" type="button"
+                            id="btnsubmit">Pesquisar</button>
+                    </form>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 avatar col-xs-12 col-sm-12 col-md-6 col-lg-5" id="bio">
+                <img src="https://avatars.githubusercontent.com/u/90854484?v=4" alt="Foto de Perfil">
+                <h1>Gabriel Lima de Souza</h1>
+                <h2>Usuário: GabrielLimadeSouza</h2>
+                <div class="biografia">
+                    <p>Biografia: </p>
+                </div>
+                <div class="card_perfil">
+                    <p>Repositórios: </p>
+                    <p>Seguidores: </p>
+                    <p>Seguindo: </p>
+                    <p>Localização: </p>
+                </div>
+            </div>
+            <div class="col-7 principal col-xs-12 col-sm-12 col-md-6 col-lg-7" id="principal">
+                <h4>Principais repositórios: </h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card card1">
+                            <div class="card-body card-body1">
+                                <h5 class="card-title">Nome do Repositório</h5>
+                                <p class="card-text">Descrição do repositório</p>
+                                <a href="#" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar
+                                    Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card card2">
+                            <div class="card-body">
+                                <h5 class="card-title">Nome do Repositório</h5>
+                                <p class="card-text">Descrição do repositório</p>
+                                <a href="#" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar
+                                    Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card card3">
+                            <div class="card-body">
+                                <h5 class="card-title">Nome do Repositório</h5>
+                                <p class="card-text">Descrição do repositório</p>
+                                <a href="#" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar
+                                    Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card card4">
+                            <div class="card-body">
+                                <h5 class="card-title">Nome do Repositório</h5>
+                                <p class="card-text">Descrição do repositório</p>
+                                <a href="#" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar
+                                    Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 rodape">
+                <h1>© Copyright by Gabriel Lima de Souza - 2021</h1>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script>
+        function sucesso() {
+            let obj = JSON.parse(this.responseText);
+
+            let perfil = `
+                <img src="${obj.avatar_url}" alt="Foto de Perfil">
+                <h1>${obj.name}</h1>
+                <h2>Usuário: ${obj.login}</h2>
+                <div class="biografia">
+                    <p>Biografia:</br> ${obj.bio}</p>
+                </div>
+                <div class="card_perfil">
+                    <p>Repositórios: ${obj.public_repos}</p>
+                    <p>Seguidores: ${obj.followers}</p>
+                    <p>Seguindo: ${obj.following}</p>
+                    <p>Localização:</br> ${obj.location}</p>
+                </div>
+                `;
+            document.getElementById("bio").innerHTML = perfil;
+        }
+
+        function repo() {
+            let objR = JSON.parse(this.responseText);
+            if (objR.length >= 4) {
+                let repo = `
+                <h4>Principais repositórios: </h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card card1">
+                            <div class="card-body">
+                                <h5 class="card-title">${objR[0].name}</h5>
+                                <p class="card-text">${objR[0].description}</p>
+                                <a href="${objR[0].html_url}" target="_blank" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card card2">
+                            <div class="card-body">
+                                <h5 class="card-title">${objR[1].name}</h5>
+                                <p class="card-text">${objR[1].description}</p>
+                                <a href="${objR[1].html_url}" target="_blank" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card card3">
+                            <div class="card-body">
+                                <h5 class="card-title">${objR[2].name}</h5>
+                                <p class="card-text">${objR[2].description}</p>
+                                <a href="${objR[2].html_url}" target="_blank" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${objR[3].name}</h5>
+                                <p class="card-text">${objR[3].description}</p>
+                                <a href="${objR[3].html_url} " target="_blank" class="btn btn-dark"><i class="devicon-github-original"></i> Visitar Repositório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                document.getElementById("principal").innerHTML = repo;
+            }
+            else {
+                alert("Esse perfil não possui a quantidade mínima de 4 repositórios, os repositórios não serão carregados corretamente!");
+            }
+        }
+
+
+        window.onload = function () {
+            alert("Pesquise um usuário do GitHub para utilizar a aplicação!");
+        };
+
+        function erro(err) {
+            console.log("Ocorreu um erro!", err);
+        }
+
+        function reperror(err) {
+            console.log("Ocorreu um erro na requisição do repositório!", err);
+        }
+
+        var inputUsuario;
+        let btn = document.getElementById("btnsubmit");
+        btn.addEventListener("click", function () {
+            inputUsuario = document.getElementById("pesquisaUsuario").value;
+            var xhr = new XMLHttpRequest();
+            xhr.onload = sucesso;
+            xhr.onerror = erro;
+            xhr.open("get", `https://api.github.com/users/${inputUsuario}`);
+            xhr.send();
+
+            var xhrR = new XMLHttpRequest();
+            xhrR.onload = repo;
+            xhrR.onerror = reperror;
+            xhrR.open("get", `https://api.github.com/users/${inputUsuario}/repos`);
+            xhrR.send();
+        })
+
+
+    </script>
+</body>
+
+</html>
