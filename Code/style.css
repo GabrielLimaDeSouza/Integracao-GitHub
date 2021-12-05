@@ -31,6 +31,10 @@ html {
 }
 
 /* Definições do conteúdo principal */
+a {
+    color: inherit;
+}
+
 .avatar {
     width: 500px;
 }

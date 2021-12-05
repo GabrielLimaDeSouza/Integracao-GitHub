@@ -109,7 +109,7 @@
             let perfil = `
                 <img src="${obj.avatar_url}" alt="Foto de Perfil">
                 <h1>${obj.name}</h1>
-                <h2>Usuário: ${obj.login}</h2>
+                <h2>Usuário: <a  target="_blank" href="${obj.html_url}">${obj.login}</a></h2>
                 <div class="biografia">
                     <p>Biografia:</br> ${obj.bio}</p>
                 </div>
